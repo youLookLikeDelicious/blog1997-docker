@@ -12,7 +12,19 @@ Blog1997是一个前后端分离的博客系统。前端使用Nuxt，实现vue�
 
 [![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](http://go.plvideo.cn/front/video/preview?vid=43876a053a5729ff357674c4390011c9_4)
 
-## 安装
+### 特性
+
+- Vue的SSR
+- 自动生成sitemap.xml。
+- 使用DFA算法对敏感词汇进行监测，将评论的敏感词汇替换成***，任意扩展词汇列表。
+- 基于角色的权限控制（RBAC）。
+- 富文本和Markdown可以任意切换。
+- 使用bit.bin实现vue组件的共享。
+- 比较全面的Feature测试和Unit测试
+- 将上传的图片备份一个webp格式，并添加水印。
+- 支持微信和GITHUB第三方登陆，也可以将第三方账号绑定到邮箱账号。
+
+# 安装
 
 需要在操作系统上安装Docker.  
 建议在生产环境中,使用Docker secrets来管理敏感的数据,比如用户名和密码等.  
