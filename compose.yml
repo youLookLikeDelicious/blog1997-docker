@@ -22,7 +22,7 @@ services:
     command: --requirepass ${redis_password:-masterauth}
   db:
     image: mysql:5.7.29
-    command: --ngram_token_size=1
+    command: --ngram_token_size=1 --ft_min_word_len=1
     ports:
       - 3308:3306
     volumes:
@@ -31,7 +31,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${db_password:-admin123}
       - MYSQL_PASSWORD=${db_password:-admin123}
       - MYSQL_USER=${db_username:-xy}
-      - MYSQL_DATABASE=${db_name}
+      - MYSQL_DATABASE=${db_database}
     networks:
       - blog1997
   # laravel
@@ -49,7 +49,7 @@ services:
       - supervisorlog:/var/log/supervisor/
       - ./config/php.ini:/usr/local/etc/php/php.ini
     environment:
-      - MASTER_EMAIL=${email:-admin@qq.com}
+      - MASTER_EMAIL=${master_email:-admin@test.com}
       - APP_KEY=${app_key}
       - DB_USERNAME=${db_username:-xy}
       - APP_URL=${domain:-http://localhost}
@@ -65,6 +65,9 @@ services:
       - WECHAT_PUBLIC_APP_ID=${wechat_public_app_id}
       - WECHAT_PUBLIC_SECRET=${wechat_public_secret}
       - GMAP_KEY=${gamp_key}
+      - MAIL_PORT=${mail_port:-465}
+      - BAIDU_TOKEN=${baidu_token}
+      - DB_DATABASE=${db_database:-blog1997}
   # ssr前端
   nuxt:
     image: chaosxy/blog1997:1.0.4
@@ -76,7 +79,7 @@ services:
     environment:
       - TITLE="${title:-blog1997}"
       - API_URL="${api_url:-http://localhost/api}"
-      - WECHAT_APP_ID="${wechat_app_id}"
+      - WEICHAT_APP_ID="${wechat_app_id}"
       - GIT_CLIENT_ID="${git_client_id}"
       - DESCRIPTION="${description}"
       - BEIAN="${beian}"
